@@ -9,5 +9,13 @@
 <span>Defensa:</span>
 <input type="range">
 
-<button>Guardar</button>
-<button>Cancelar</button>
+Today's item: {{item}}
+
+<button>
+    <img src="./assets/icons/bx-save.svg" alt="bx-save">
+    <span> Guardar</span>
+</button>
+<button (click)="pokemonAddClose()">
+    <img src="./assets/icons/bx-x.svg" alt="bx-x">
+    <span> Cancelar</span>
+</button>

@@ -1,6 +1,9 @@
 <p>Listado de pokemon</p>
 <input type="text" placeholder="Buscar">
-<button>Nuevo</button>
+<button (click)="addPokemon()">
+    <img src="./assets/icons/bx-plus-medical.svg" alt="bx-plus-medical">
+    <span> Nuevo</span>
+</button>
 
 <table>
     <thead>
@@ -18,9 +21,12 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
+            <td>
+                <img src="./assets/icons/bx-edit-alt.svg" alt="bx-edit-alt">
+                <img src="./assets/icons/bx-trash.svg" alt="bx-trash">
+            </td>
         </tr>
     </tbody>
 </table>
 
-<app-add-pokemon></app-add-pokemon>
+<app-add-pokemon (newItemEvent)="swapAddPokemon($event)" [item]="pokemonAddForm" *ngIf="pokemonAddForm"></app-add-pokemon>

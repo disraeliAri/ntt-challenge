@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonComponent implements OnInit {
 
+  pokemonAddForm = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  addPokemon(){
+    this.pokemonAddForm = true;
+  }
+
+  swapAddPokemon(flag: boolean) {
+    this.pokemonAddForm = false;
   }
 
 }
