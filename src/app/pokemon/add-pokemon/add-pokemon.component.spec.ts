@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddPokemonComponent } from './add-pokemon.component';
@@ -8,6 +9,7 @@ describe('AddPokemonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientModule],
       declarations: [ AddPokemonComponent ]
     })
     .compileComponents();
@@ -21,5 +23,19 @@ describe('AddPokemonComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should create', () => {
+    component.pokemon = {
+      id: 0,
+      idAuthor: 1,
+      name: 'asasas',
+      type: 'water',
+      attack: 100,
+      defense: 100,
+      hp: 100,
+      image: ''
+    }
+    expect(component.createUpdatePokemon);
   });
 });

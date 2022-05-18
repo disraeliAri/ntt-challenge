@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { PokemonPipe } from '../core/pipes/filterPokemon.pipe';
 
 import { PokemonComponent } from './pokemon.component';
 
@@ -8,7 +11,8 @@ describe('PokemonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PokemonComponent ]
+      imports: [HttpClientModule],
+      declarations: [ PokemonComponent, PokemonPipe ]
     })
     .compileComponents();
   });

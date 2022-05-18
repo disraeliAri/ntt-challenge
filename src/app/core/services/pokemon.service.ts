@@ -10,19 +10,13 @@ import { Constants } from '../../utils/constants';
 })
 export class PokemonService {
 
+  urlApi = 'https://pokemon-pichincha.herokuapp.com/pokemons/'
   queryParams = new HttpParams().append("idAuthor", Constants.idAuthor);
 
   constructor(protected httpClient: HttpClient) {}
 
-  urlGetPokemons = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
-  urlCreatePokemon = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
-  urlGetPokemonById = 'https://pokemon-pichincha.herokuapp.com/pokemons/:id';
-  urlGetNPokemons = 'https://pokemon-pichincha.herokuapp.com/pokemons/count?idAuthor=1';
-  urlUpdatePokemon = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
-  urlDeletePokemon = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
-
   getPokemons(): Observable<any> {
-    return this.httpClient.get<any>(this.urlGetPokemons, {params: this.queryParams}).pipe(map((responseModel: Pokemon[]) => {
+    return this.httpClient.get<any>(this.urlApi, {params: this.queryParams}).pipe(map((responseModel: Pokemon[]) => {
       return responseModel;
     }), catchError(error => {
       return of(0);
@@ -31,15 +25,15 @@ export class PokemonService {
 
   createPokemon(pokemon: Pokemon): Observable<any> {
     pokemon.idAuthor = Number(Constants.idAuthor);
-    return this.httpClient.post<any>(this.urlCreatePokemon, pokemon).pipe(map((responseModel: any) => {
+    return this.httpClient.post<any>(this.urlApi, pokemon).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
       return of(0);
     }));
   }
 
-  getPokemonById(): Observable<any> {
-    return this.httpClient.get<any>(this.urlGetPokemonById).pipe(map((responseModel: any) => {
+  getPokemonById(id: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.urlApi}${id.toString()}`).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
       return of(0);
@@ -47,7 +41,7 @@ export class PokemonService {
   }
 
   getNPokemons(): Observable<any> {
-    return this.httpClient.get<any>(this.urlGetNPokemons).pipe(map((responseModel: any) => {
+    return this.httpClient.get<any>(`${this.urlApi}count`).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
       return of(0);
@@ -55,7 +49,7 @@ export class PokemonService {
   }
 
   updatePokemon(id: number, pokemon: Pokemon): Observable<any> {
-    return this.httpClient.put<any>(`${this.urlUpdatePokemon}${id.toString()}`, pokemon).pipe(map((responseModel: any) => {
+    return this.httpClient.put<any>(`${this.urlApi}${id.toString()}`, pokemon).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
       return of(0);
@@ -63,7 +57,7 @@ export class PokemonService {
   }
   
   deletePokemon(id: number): Observable<any> {
-    return this.httpClient.delete<string>(`${this.urlDeletePokemon}${id.toString()}`).pipe(map((responseModel: any) => {
+    return this.httpClient.delete<string>(`${this.urlApi}${id.toString()}`).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
       return of(0);
