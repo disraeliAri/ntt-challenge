@@ -1,0 +1,55 @@
+.addContent {
+    border: 1px solid #000;
+    margin-top: 2rem;
+
+    .header {
+        text-align: center;
+        padding: 2rem 0rem;
+    }
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /**************************************/
+  @media (min-width: 700px) {
+    .wrapper {
+      overflow: hidden;
+    }
+    .wrapper > * {
+      float: left;
+      //padding: 0.5em 0.5em;
+    }
+  }
+  
+  @media (min-width: 700px) {
+    .form {
+      width: 100%;
+    }
+  }
+  
+  .form p {
+    padding: 0rem 0.5rem;
+    float: left;
+    width: 50%;
+    text-align: left;
+  }
+  .form p:not(:nth-child(2n)) {
+    text-align: right;
+  }
+  
+  body {
+    padding: 1rem;
+  }
+  
+  .wrapper {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  .wrapper > * {
+    padding: 1em;
+  }
+  
+  .form {
+    background: #fff;
+  }

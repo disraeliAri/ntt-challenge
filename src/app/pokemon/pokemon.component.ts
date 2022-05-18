@@ -22,12 +22,12 @@ export class PokemonComponent implements OnInit {
     });
   }
 
-  addPokemon(){
-    this.pokemonAddForm = true;
+  swapAddPokemon(flag: boolean = false) {
+    this.pokemonAddForm = flag;
   }
 
-  swapAddPokemon(flag: boolean) {
-    this.pokemonAddForm = false;
+  AddPokemonToList(pokemon: Pokemon) {
+    this.pokemonList.push(pokemon);
   }
 
   removePokemonFromList(key: number) {
@@ -38,7 +38,7 @@ export class PokemonComponent implements OnInit {
 
   updatePokemon(pokemon: Pokemon) {
     this.pokemonSelected = pokemon;
-    this.pokemonAddForm = true;
+    this.swapAddPokemon(true);
   }
 
   deletePokemon(id: number) {

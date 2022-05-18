@@ -1,36 +1,53 @@
-<p>Listado de pokemon</p>
-<input type="text" placeholder="Buscar" [(ngModel)]="search">
-<button (click)="addPokemon()">
-    <img src="./assets/icons/bx-plus-medical.svg" alt="bx-plus-medical">
-    <span> Nuevo</span>
-</button>
+<div class="container">
+    <div class="container-title">
+        <span>Listado de pokemon</span>
+    </div>
 
-<table>
-    <thead>
-        <tr>
-            <td>Nombre</td>
-            <td>Imagen</td>
-            <td>Ataque</td>
-            <td>Defensa</td>
-            <td>Acciones</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let pokemon of pokemonList | pokemonfilter: search">
-            <td>{{pokemon.name}}</td>
-            <td>{{pokemon.image}}</td>
-            <td>{{pokemon.attack}}</td>
-            <td>{{pokemon.defense}}</td>
-            <td>
-                <button (click)="updatePokemon(pokemon)">
-                    <img src="./assets/icons/bx-edit-alt.svg" alt="bx-edit-alt">
-                </button>
-                <button (click)="deletePokemon(pokemon.id)">
-                    <img src="./assets/icons/bx-trash.svg" alt="bx-trash">
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
 
-<app-add-pokemon (newItemEvent)="swapAddPokemon($event)" [item]="pokemonAddForm" [pokemonSelected]="pokemonSelected" *ngIf="pokemonAddForm"></app-add-pokemon>
+    <div class="container-controls">
+        <div class="left-side">
+            <!--img src="./assets/icons/bx-search-alt-2.svg" alt="bx-plus-medical"-->
+            <input class="nosubmit" type="search" placeholder="Buscar" [(ngModel)]="search">
+        </div>
+        <div class="right-side">
+            <button (click)="swapAddPokemon(true)" class="btn">
+                <img src="./assets/icons/bx-plus-medical.svg" alt="bx-plus-medical">
+                Nuevo
+            </button>
+        </div>
+    </div>
+
+    <div class="container-table">
+        <table>
+            <thead class="table-header">
+                <tr>
+                    <td>Nombre</td>
+                    <td>Imagen</td>
+                    <td>Ataque</td>
+                    <td>Defensa</td>
+                    <td>Acciones</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pokemon of pokemonList | pokemonfilter: search">
+                    <td>{{pokemon.name}}</td>
+                    <td><img class="pokemon-img" [src]="pokemon.image" alt="pokemon.image"></td>
+                    <td>{{pokemon.attack}}</td>
+                    <td>{{pokemon.defense}}</td>
+                    <td>
+                        <button (click)="updatePokemon(pokemon)">
+                            <img src="./assets/icons/bx-edit-alt.svg" alt="bx-edit-alt">
+                        </button>
+                        <button (click)="deletePokemon(pokemon.id)">
+                            <img src="./assets/icons/bx-trash.svg" alt="bx-trash">
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+<app-add-pokemon (newItemEvent)="swapAddPokemon($event)" (newPokemonEvent)="AddPokemonToList($event)" [item]="pokemonAddForm" [pokemonSelected]="pokemonSelected" [hidden]="!pokemonAddForm"></app-add-pokemon>
+</div>

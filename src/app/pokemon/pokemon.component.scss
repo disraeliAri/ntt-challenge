@@ -1,0 +1,50 @@
+.container {
+    background-color: azure;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+
+    .container-title {
+        padding: 3rem 0rem;
+        width: 100%;
+        font-size: x-large;
+        font-weight: bolder;
+    }
+
+    .container-controls {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    
+    .left-side {
+        grid-column: 1 / 2;
+        grid-row: 1;
+        text-align: left;
+        padding-left: 2rem;
+    }
+    
+    .right-side {
+        grid-column: 2 / 2;
+        grid-row: 1;
+        text-align: right;
+        padding-right: 2rem;
+    }
+
+    table {
+        width:100%;
+	    border:1px solid #000;
+
+        .table-header {
+            background-color:  gainsboro;
+            border:2px solid #000;
+        }
+
+        .pokemon-img {
+            height:100px;
+            width: 100px;
+        }
+    }
+
+}

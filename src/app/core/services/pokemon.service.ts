@@ -25,7 +25,6 @@ export class PokemonService {
     return this.httpClient.get<any>(this.urlGetPokemons, {params: this.queryParams}).pipe(map((responseModel: Pokemon[]) => {
       return responseModel;
     }), catchError(error => {
-      console.log('Error')
       return of(0);
     }));
   }
@@ -35,7 +34,6 @@ export class PokemonService {
     return this.httpClient.post<any>(this.urlCreatePokemon, pokemon).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
-      console.log('Error')
       return of(0);
     }));
   }
@@ -44,7 +42,6 @@ export class PokemonService {
     return this.httpClient.get<any>(this.urlGetPokemonById).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
-      console.log('Error')
       return of(0);
     }));
   }
@@ -53,7 +50,6 @@ export class PokemonService {
     return this.httpClient.get<any>(this.urlGetNPokemons).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
-      console.log('Error')
       return of(0);
     }));
   }
@@ -62,7 +58,6 @@ export class PokemonService {
     return this.httpClient.put<any>(`${this.urlUpdatePokemon}${id.toString()}`, pokemon).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
-      console.log('Error')
       return of(0);
     }));
   }
@@ -71,7 +66,6 @@ export class PokemonService {
     return this.httpClient.delete<string>(`${this.urlDeletePokemon}${id.toString()}`).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {
-      console.log('Error')
       return of(0);
     }));
   }

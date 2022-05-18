@@ -1,0 +1,29 @@
+footer {
+    padding-left: 4rem;
+    grid: 100%;
+    grid-column: 2;
+    gap: 2rem;
+    background-color: aliceblue;
+
+    .created {
+        text-align: center;
+        font-weight: bolder;
+    }
+  
+    .links {
+      a {
+        padding: 10px 5px;
+        display: inline-block;
+  
+        fa-icon {
+          font-size: 20px;
+          width: 25px;
+        }
+  
+        span {
+          font-size: 14px;
+          padding: 0 0 0 3px;
+        }
+      }
+    }
+  }

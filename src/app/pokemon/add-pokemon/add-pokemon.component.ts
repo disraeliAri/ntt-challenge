@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PokemonService } from '../../core/services/pokemon.service';
 import { Pokemon } from '../../core/dto/pokemon.dto';
+import { first, map, switchMap, tap } from 'rxjs/operators';
+import { iif, of } from 'rxjs';
 
 @Component({
   selector: 'app-add-pokemon',
@@ -12,6 +14,8 @@ export class AddPokemonComponent implements OnInit {
   @Input() item = true;
   @Input() pokemonSelected!: Pokemon; 
   @Output() newItemEvent = new EventEmitter<boolean>();
+  @Output() newPokemonEvent = new EventEmitter<Pokemon>();
+
   pokemon = new Pokemon();
   swapUpdateCreate: boolean = true;
   typeList : string[] = ["fire", "water", "normal", "bug", "poison"];
@@ -40,10 +44,9 @@ export class AddPokemonComponent implements OnInit {
     }
 
     if(this.swapUpdateCreate){
-      this.pokemonService.createPokemon(pokemon).subscribe(response =>{
-        console.log(response);
-      })
-      console.log("create");
+      this.pokemonService.createPokemon(pokemon).subscribe(response => {
+        this.newPokemonEvent.emit(response);
+      });
     } else {
       this.pokemonService.updatePokemon(pokemon.id, pokemon).subscribe();
     }
@@ -52,7 +55,17 @@ export class AddPokemonComponent implements OnInit {
 
   pokemonAddClose() {
     this.item = false;
+    this.clearPokemon();
     this.newItemEvent.emit(this.item);
+  }
+
+  clearPokemon(){
+    this.pokemon.name = '';
+    this.pokemon.image = '';
+    this.pokemon.type = '';
+    this.pokemon.attack = 0;
+    this.pokemon.defense = 0;
+    this.pokemon.hp = 0;
   }
 
 }

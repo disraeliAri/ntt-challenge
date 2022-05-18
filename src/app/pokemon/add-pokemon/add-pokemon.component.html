@@ -1,24 +1,52 @@
-<p>Nuevo Pokemon</p>
-<span>Nombre:</span>
-<input type="text" [(ngModel)]="pokemon.name">
-<span>Imagen:</span>
-<input type="text" [(ngModel)]="pokemon.image" placeholder="url">
-<span>Tipo:</span>
-<select name="type" [(ngModel)]="pokemon.type">
-    <option [value]="type" *ngFor="let type of typeList">{{type}}</option>
-</select>
-<span>hp:</span>
-<input type="range" [(ngModel)]="pokemon.hp" min="0" max="100">
-<span>attack:</span>
-<input type="range" [(ngModel)]="pokemon.attack" min="0" max="100">
-<span>Defensa:</span>
-<input type="range" [(ngModel)]="pokemon.defense" min="0" max="100">
+<div class="addContent">
+    <div class="header">
+        Nuevo Pokemon
+    </div>
 
-<button (click)="createUpdatePokemon(pokemon)" [disabled]="!pokemon.attack || !pokemon.defense || !pokemon.name || !pokemon.image || !pokemon.type || !pokemon.hp">
-    <img src="./assets/icons/bx-save.svg" alt="bx-save">
-    <span> Guardar</span>
-</button>
-<button (click)="pokemonAddClose()">
-    <img src="./assets/icons/bx-x.svg" alt="bx-x">
-    <span> Cancelar</span>
-</button>
+    <div class="wrapper">
+        <div class="form">
+            <p>
+                <label for="">Nombre:</label>
+                <input type="text" [(ngModel)]="pokemon.name">
+            </p>
+            <p>
+                <label for="">Ataque:</label>
+                <input type="range" [(ngModel)]="pokemon.attack" min="0" max="100">
+            </p>
+            <p>
+                <label for="">Imagen:</label>
+                <input type="text" [(ngModel)]="pokemon.image" placeholder="url">
+            </p>
+            <p>
+                <label for="">Defensa:</label>
+                <input type="range" [(ngModel)]="pokemon.defense" min="0" max="100">
+            </p>
+            <p>
+                <label for="">Tipo:</label>
+                <select name="type" [(ngModel)]="pokemon.type">
+                    <option [value]="type" *ngFor="let type of typeList">{{type}}</option>
+                </select>
+            </p>
+            <p>
+                <label for="">Hp:</label>
+                <input type="range" [(ngModel)]="pokemon.hp" min="0" max="100">
+            </p>
+            <p>
+                <button (click)="createUpdatePokemon(pokemon)" [disabled]="!pokemon.attack || !pokemon.defense || !pokemon.name || !pokemon.image || !pokemon.type || !pokemon.hp">
+                    <img src="./assets/icons/bx-save.svg" alt="bx-save">
+                    Guardar
+                </button>
+            </p>
+            <p>
+                <button (click)="pokemonAddClose()">
+                    <img src="./assets/icons/bx-x.svg" alt="bx-x">
+                    Cancelar
+                </button>
+            </p>
+        </div>
+    </div>
+
+    
+
+   
+</div>

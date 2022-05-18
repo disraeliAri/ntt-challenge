@@ -1,0 +1,18 @@
+header {
+    box-shadow: 0 0.125rem 1rem rgb(0 0 0 / 8%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    border-bottom: 1px solid #ededed;
+    background-color: cadetblue;
+    height: 4rem;
+
+    .title-block {
+        .text-bold-title {
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 2rem;
+        }
+    }
+}
