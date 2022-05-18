@@ -1,5 +1,5 @@
 <p>Listado de pokemon</p>
-<input type="text" placeholder="Buscar">
+<input type="text" placeholder="Buscar" [(ngModel)]="search">
 <button (click)="addPokemon()">
     <img src="./assets/icons/bx-plus-medical.svg" alt="bx-plus-medical">
     <span> Nuevo</span>
@@ -16,7 +16,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let pokemon of pokemonList">
+        <tr *ngFor="let pokemon of pokemonList | pokemonfilter: search">
             <td>{{pokemon.name}}</td>
             <td>{{pokemon.image}}</td>
             <td>{{pokemon.attack}}</td>

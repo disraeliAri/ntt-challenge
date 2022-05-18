@@ -1,25 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Pokemon } from '../interfaces/pokemon.interface';
+import { Constants } from '../../utils/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PokemonService {
 
+  queryParams = new HttpParams().append("idAuthor", Constants.idAuthor);
+
   constructor(protected httpClient: HttpClient) {}
 
-  urlGetPokemons = 'https://pokemon-pichincha.herokuapp.com/pokemons/?idAuthor=1';
-  urlCreatePokemon = 'https://pokemon-pichincha.herokuapp.com/pokemons/?idAuthor=1';
+  urlGetPokemons = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
+  urlCreatePokemon = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
   urlGetPokemonById = 'https://pokemon-pichincha.herokuapp.com/pokemons/:id';
   urlGetNPokemons = 'https://pokemon-pichincha.herokuapp.com/pokemons/count?idAuthor=1';
   urlUpdatePokemon = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
   urlDeletePokemon = 'https://pokemon-pichincha.herokuapp.com/pokemons/';
 
   getPokemons(): Observable<any> {
-    return this.httpClient.get<any>(this.urlGetPokemons).pipe(map((responseModel: Pokemon[]) => {
+    return this.httpClient.get<any>(this.urlGetPokemons, {params: this.queryParams}).pipe(map((responseModel: Pokemon[]) => {
       return responseModel;
     }), catchError(error => {
       console.log('Error')
@@ -28,6 +31,7 @@ export class PokemonService {
   }
 
   createPokemon(pokemon: Pokemon): Observable<any> {
+    pokemon.idAuthor = Number(Constants.idAuthor);
     return this.httpClient.post<any>(this.urlCreatePokemon, pokemon).pipe(map((responseModel: any) => {
       return responseModel;
     }), catchError(error => {

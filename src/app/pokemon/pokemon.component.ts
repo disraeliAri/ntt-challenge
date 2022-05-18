@@ -12,6 +12,7 @@ export class PokemonComponent implements OnInit {
   pokemonAddForm = false;
   pokemonList: Pokemon[] = [];
   pokemonSelected!: Pokemon;
+  search: string = '';
 
   constructor(private pokemonService: PokemonService) { }
 
@@ -29,15 +30,20 @@ export class PokemonComponent implements OnInit {
     this.pokemonAddForm = false;
   }
 
+  removePokemonFromList(key: number) {
+    this.pokemonList.forEach((value, index) => {
+      if(value.id == key) this.pokemonList.splice(index,1);
+    });
+  } 
+
   updatePokemon(pokemon: Pokemon) {
     this.pokemonSelected = pokemon;
     this.pokemonAddForm = true;
   }
 
   deletePokemon(id: number) {
-    console.log(id);
     this.pokemonService.deletePokemon(id).subscribe(response =>{
-
+      this.removePokemonFromList(response.id);
     });
   }
 

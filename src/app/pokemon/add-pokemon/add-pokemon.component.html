@@ -3,12 +3,18 @@
 <input type="text" [(ngModel)]="pokemon.name">
 <span>Imagen:</span>
 <input type="text" [(ngModel)]="pokemon.image" placeholder="url">
+<span>Tipo:</span>
+<select name="type" [(ngModel)]="pokemon.type">
+    <option [value]="type" *ngFor="let type of typeList">{{type}}</option>
+</select>
+<span>hp:</span>
+<input type="range" [(ngModel)]="pokemon.hp" min="0" max="100">
 <span>attack:</span>
 <input type="range" [(ngModel)]="pokemon.attack" min="0" max="100">
 <span>Defensa:</span>
 <input type="range" [(ngModel)]="pokemon.defense" min="0" max="100">
 
-<button (click)="createUpdatePokemon(pokemon)" [disabled]="!pokemon.attack || !pokemon.defense || !pokemon.name || !pokemon.image">
+<button (click)="createUpdatePokemon(pokemon)" [disabled]="!pokemon.attack || !pokemon.defense || !pokemon.name || !pokemon.image || !pokemon.type || !pokemon.hp">
     <img src="./assets/icons/bx-save.svg" alt="bx-save">
     <span> Guardar</span>
 </button>

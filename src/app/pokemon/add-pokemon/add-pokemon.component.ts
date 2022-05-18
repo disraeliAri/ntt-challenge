@@ -14,6 +14,7 @@ export class AddPokemonComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<boolean>();
   pokemon = new Pokemon();
   swapUpdateCreate: boolean = true;
+  typeList : string[] = ["fire", "water", "normal", "bug", "poison"];
   
   constructor(private pokemonService: PokemonService) { }
 
@@ -33,21 +34,18 @@ export class AddPokemonComponent implements OnInit {
   }
 
   createUpdatePokemon(pokemon: Pokemon) {
-    if(!pokemon.attack || !pokemon.defense || !pokemon.name || !pokemon.image){
+    if(!pokemon.attack || !pokemon.defense || !pokemon.name || !pokemon.image || !pokemon.type || !pokemon.hp){
       window.alert("Todos los campos son requeridos!");
       return;
     }
-    console.log(pokemon);
+
     if(this.swapUpdateCreate){
       this.pokemonService.createPokemon(pokemon).subscribe(response =>{
-
+        console.log(response);
       })
       console.log("create");
     } else {
-      this.pokemonService.updatePokemon(pokemon.id, pokemon).subscribe(response =>{
-
-      })
-      console.log("update");
+      this.pokemonService.updatePokemon(pokemon.id, pokemon).subscribe();
     }
     this.pokemonAddClose();
   }
