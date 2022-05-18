@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PokemonService } from '../../core/services/pokemon.service';
+import { Pokemon } from '../../core/dto/pokemon.dto';
 
 @Component({
   selector: 'app-add-pokemon',
@@ -8,11 +10,46 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class AddPokemonComponent implements OnInit {
 
   @Input() item = true;
+  @Input() pokemonSelected!: Pokemon; 
   @Output() newItemEvent = new EventEmitter<boolean>();
+  pokemon = new Pokemon();
+  swapUpdateCreate: boolean = true;
   
-  constructor() { }
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
+    this.swapperState()
+  }
+
+  ngOnChanges() {
+    this.swapperState()
+  }
+
+  swapperState() {
+    if(this.pokemonSelected) {
+      this.pokemon = this.pokemonSelected;
+      this.swapUpdateCreate = false;
+    }
+  }
+
+  createUpdatePokemon(pokemon: Pokemon) {
+    if(!pokemon.attack || !pokemon.defense || !pokemon.name || !pokemon.image){
+      window.alert("Todos los campos son requeridos!");
+      return;
+    }
+    console.log(pokemon);
+    if(this.swapUpdateCreate){
+      this.pokemonService.createPokemon(pokemon).subscribe(response =>{
+
+      })
+      console.log("create");
+    } else {
+      this.pokemonService.updatePokemon(pokemon.id, pokemon).subscribe(response =>{
+
+      })
+      console.log("update");
+    }
+    this.pokemonAddClose();
   }
 
   pokemonAddClose() {

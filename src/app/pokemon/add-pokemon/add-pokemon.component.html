@@ -1,17 +1,14 @@
 <p>Nuevo Pokemon</p>
 <span>Nombre:</span>
-<input type="text">
+<input type="text" [(ngModel)]="pokemon.name">
 <span>Imagen:</span>
-<!--input type="file"-->
-<input type="text" placeholder="url">
-<span>ataque:</span>
-<input type="range">
+<input type="text" [(ngModel)]="pokemon.image" placeholder="url">
+<span>attack:</span>
+<input type="range" [(ngModel)]="pokemon.attack" min="0" max="100">
 <span>Defensa:</span>
-<input type="range">
+<input type="range" [(ngModel)]="pokemon.defense" min="0" max="100">
 
-Today's item: {{item}}
-
-<button>
+<button (click)="createUpdatePokemon(pokemon)" [disabled]="!pokemon.attack || !pokemon.defense || !pokemon.name || !pokemon.image">
     <img src="./assets/icons/bx-save.svg" alt="bx-save">
     <span> Guardar</span>
 </button>

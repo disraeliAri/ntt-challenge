@@ -16,17 +16,21 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let pokemon of pokemonList">
+            <td>{{pokemon.name}}</td>
+            <td>{{pokemon.image}}</td>
+            <td>{{pokemon.attack}}</td>
+            <td>{{pokemon.defense}}</td>
             <td>
-                <img src="./assets/icons/bx-edit-alt.svg" alt="bx-edit-alt">
-                <img src="./assets/icons/bx-trash.svg" alt="bx-trash">
+                <button (click)="updatePokemon(pokemon)">
+                    <img src="./assets/icons/bx-edit-alt.svg" alt="bx-edit-alt">
+                </button>
+                <button (click)="deletePokemon(pokemon.id)">
+                    <img src="./assets/icons/bx-trash.svg" alt="bx-trash">
+                </button>
             </td>
         </tr>
     </tbody>
 </table>
 
-<app-add-pokemon (newItemEvent)="swapAddPokemon($event)" [item]="pokemonAddForm" *ngIf="pokemonAddForm"></app-add-pokemon>
+<app-add-pokemon (newItemEvent)="swapAddPokemon($event)" [item]="pokemonAddForm" [pokemonSelected]="pokemonSelected" *ngIf="pokemonAddForm"></app-add-pokemon>

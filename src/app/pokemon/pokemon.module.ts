@@ -1,9 +1,8 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PokemonComponent } from './pokemon.component';
 import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
-
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +10,8 @@ import { AddPokemonComponent } from './add-pokemon/add-pokemon.component';
     AddPokemonComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class PokemonModule { }
